@@ -1,0 +1,25 @@
+{
+    "name": "notara",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "popup": "yarn workspace @notara/popup",
+        "view": "yarn workspace @notara/view",
+        "update-ext": "nodemon --watch assets --watch ./manifest.json --exec concurrently \"cp ./manifest.json ./dist/\" \"cp -R assets dist\"",
+        "dev": "concurrently \"tsc -w\" \"yarn update-ext\" \"yarn popup watch-ext\"",
+        "build": "tsc src && cp ./manifest.json ./dist/ && yarn popup build"
+    },
+    "devDependencies": {
+        "@types/chrome": "^0.0.203",
+        "concurrently": "^7.6.0",
+        "nodemon": "^2.0.20"
+    },
+    "dependencies": {
+        "typescript": "^4.9.3"
+    }
+}
