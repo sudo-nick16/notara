@@ -1,0 +1,15 @@
+{
+    "name": "@notara/extension",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "update-ext": "nodemon --watch assets --watch ./manifest.json --exec concurrently \"cp ./manifest.json ../../dist/\" \"cp -R assets ../../dist\"",
+        "dev": "concurrently \"tsc -w\" \"yarn update-ext\"",
+        "build": "tsc src"
+    },
+    "devDependencies": {
+        "typescript": "^4.6.4",
+        "concurrently": "^7.6.0"
+    }
+}

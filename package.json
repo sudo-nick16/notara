@@ -9,9 +9,9 @@
     ],
     "scripts": {
         "popup": "yarn workspace @notara/popup",
+        "extension": "yarn workspace @notara/extension",
         "view": "yarn workspace @notara/view",
-        "update-ext": "nodemon --watch assets --watch ./manifest.json --exec concurrently \"cp ./manifest.json ./dist/\" \"cp -R assets dist\"",
-        "dev": "concurrently \"tsc -w\" \"yarn update-ext\" \"yarn popup watch-ext\"",
+        "dev": "concurrently \"yarn extension dev\" \"yarn popup ext-dev\"",
         "build": "tsc src && cp ./manifest.json ./dist/ && yarn popup build"
     },
     "devDependencies": {

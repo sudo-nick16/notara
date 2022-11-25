@@ -1,0 +1,29 @@
+{
+    "name": "Notara",
+    "description": "a productivity tool",
+    "version": "0.1",
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*/*"
+            ],
+            "js": [
+                "./content_entry.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+          "resources": [ "/*/*", "/*/*/*", "/*", "/*.js"],
+          "matches": [ "https://*/*" ]
+        }
+      ],
+    "permissions": [
+        "nativeMessaging"
+    ],
+    "content_security_policy": {
+        "script-src": "self",
+        "object-src": "none"
+    }
+}
