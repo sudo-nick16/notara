@@ -9,6 +9,9 @@
                 "https://*/*",
                 "http://*/*"
             ],
+            "css": [
+                "./notara.css"
+            ],
             "js": [
                 "./content_entry.js"
             ]

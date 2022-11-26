@@ -4,9 +4,9 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "update-ext": "nodemon --watch assets --watch ./manifest.json --exec concurrently \"cp ./manifest.json ../../dist/\" \"cp -R assets ../../dist\"",
+        "update-ext": "nodemon --watch assets --watch ./manifest.json --watch src/notara.css --exec concurrently \"cp ./manifest.json ../../dist/\" \"cp -R assets ../../dist\" \"cp ./src/notara.css ../../dist\"",
         "dev": "concurrently \"tsc -w\" \"yarn update-ext\"",
-        "build": "tsc src"
+        "build": "tsc src && cp ./manifest.json ../../dist && cp -R assets ../../dist && cp ./src/notara.css ../../dist"
     },
     "devDependencies": {
         "typescript": "^4.6.4",

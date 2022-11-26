@@ -29,7 +29,7 @@ const NavItem: React.FC<NavItemProps> = ({
 
 const Navbar: React.FC<NavbarProps> = ({className=''}) => {
     return (
-        <div className={`${className} grid grid-cols-2 gap-3 pt-4 pb-3 px-3 justify-between bg-white/40`}>
+        <div className={`${className} grid grid-cols-2 gap-3 pt-4 pb-3 px-3 justify-between bg-white/40 shadow-gray-500`}>
             <NavItem name="Notes" url="/notes" action={() => {}} />
             <NavItem name="Bookmarks" url="/bookmarks" action={() => {}} />
         </div>
