@@ -1,62 +1,60 @@
 import {dragElement} from './dragElement.js'
+import Logger from './logger.js';
+import {setStyle} from './helpers.js';
 
 export const main = () => {
-    console.log("notara");
-    const pageParent = document.querySelector("body");
+    const logger = new Logger()
 
+    const pageParent = document.querySelector("body");
+    
     // main div element
     const mainFrame = document.createElement("iframe");
+    mainFrame.id = "notara-main-frame";
+    mainFrame.name = "notara";
     mainFrame.src = chrome.runtime.getURL('popup/index.html');
-    Object.assign(mainFrame.style, {
-        all: "unset",
-        display: "flex",
+    setStyle(mainFrame, {
+        all: "initial;",
         position: "absolute",
-        top: "0px",
+        display: "block;",
+        top: "calc(100% + 5px)",
         right: "0px",
         width: "auto",
         height: "auto",
         fontSize: "16px",
+        borderRadius: "15px",
     })
 
-    const mainFrameWrapper = document.createElement("div");
-    Object.assign(mainFrameWrapper.style, {
-        all: "unset",
-        position: "relative",
-        margin: "5px",
-    })
-    mainFrameWrapper.appendChild(mainFrame);
-
-    // the display button 
     const mainButton = document.createElement("button");
     const icon = document.createElement("img");
     icon.src = chrome.runtime.getURL('assets/icon.png');
-    Object.assign(icon.style, {
-        all: "unset",
+    setStyle(icon, {
+        all: "unset;",
         width: "100%",
         height: "100%",
+        backgroundColor: "transparent",
     });
-    Object.assign(mainButton.style, {
-        all: "unset",
+    setStyle(mainButton, {
+        all: "unset;",
         outline: "none",
         border: "none",
         borderRadius: "50%",
         width: "40px",
         height: "40px",
-        color: "black",
-        fontSize: "16px",
+        padding: "0px",
         boxShadow: "0 0 10px rgba(0,0,0,0.5)",
     })
     mainButton.appendChild(icon);
     mainButton.onclick = () => {
-        mainFrame.style.display = mainFrame.style.display === "flex" ? "none" : "flex";
+        mainFrame.style.display = mainFrame.style.display === "block" ? "none" : "block";
     }
 
     // the display thing
     const mainContainer = document.createElement("div");
     mainContainer.appendChild(mainButton)
-    mainContainer.appendChild(mainFrameWrapper)
+    mainContainer.appendChild(mainFrame)
     mainContainer.draggable = true;
-    Object.assign(mainContainer.style, {
+    setStyle(mainContainer, {
+        all: "unset;",
         position: "fixed",
         flexDirection: "column",
         top: "100px",
@@ -64,13 +62,12 @@ export const main = () => {
         width: "auto",
         zIndex: "99999",
         display: "flex",
-        color: "white",
-        padding: "3px",
         cursor: "pointer",
     })
 
     dragElement(mainContainer);
     pageParent?.appendChild(mainContainer);
 
+    logger.log('Notara initialized')
 }
 
